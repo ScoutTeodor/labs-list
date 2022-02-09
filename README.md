@@ -1,4 +1,4 @@
-# labs-list
+# labs-list TEST
 
 ## 1 лабораторная
 
