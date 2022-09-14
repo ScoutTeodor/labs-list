@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<body><div data-target="readme-toc.content" class="Box-body px-5 pb-5">
+            <article class="markdown-body entry-content container-lg" itemprop="text"><h1 dir="auto"><a id="user-content-лабораторные-работы-по-дисциплине-объектно-ориентированное-программирование" class="anchor" aria-hidden="true" href="#лабораторные-работы-по-дисциплине-объектно-ориентированное-программирование"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторные работы по дисциплине Объектно-ориентированное программирование</h1>
+<p dir="auto"><strong>Source:</strong> <a href="https://itmois.notion.site/7e525290bca04ac392a39b870b06ade2" rel="nofollow">Notion OOP</a></p>
+<p dir="auto"><strong><a href="https://github.com/is-oop-y24/ScoutTeodor">Репозиторий</a></strong></p>
+<hr>
+<h2 dir="auto"><a id="user-content-лабораторная-0-hello-objects" class="anchor" aria-hidden="true" href="#лабораторная-0-hello-objects"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 0. Hello objects</h2>
+<p dir="auto"><strong>Цель:</strong> ознакомиться с языком C#, базовыми механизмами ООП. В шаблонном репозитории описаны базовые сущности, требуется реализовать недостающие методы и написать тесты, которые бы проверили корректность работы.</p>
+<p dir="auto"><strong>Предметная область.</strong> Студенты, группы, переводы (хоть где-то), поиск. Группа имеет название (соответсвует шаблону M3XYY, где X - номер курса, а YY - номер группы). Студент может находиться только в одной группе. Система должна поддерживать механизм перевода между группами, добавления в группу и удаление из группы.</p>
+<p dir="auto">Требуется реализовать предоставленный в шаблоне интерфейс:</p>
+<div class="highlight highlight-source-cs notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">IIsuService</span>
+{
+    <span class="pl-en">Group</span> <span class="pl-en">AddGroup</span>(<span class="pl-en">GroupName</span> <span class="pl-en">name</span>);
+    <span class="pl-en">Student</span> <span class="pl-en">AddStudent</span>(<span class="pl-en">Group</span> <span class="pl-en">group</span>, <span class="pl-k">string</span> <span class="pl-en">name</span>);
+
+    <span class="pl-en">Student</span> <span class="pl-en">GetStudent</span>(<span class="pl-k">int</span> <span class="pl-en">id</span>);
+    <span class="pl-en">Student</span> <span class="pl-en">FindStudent</span>(<span class="pl-k">string</span> <span class="pl-en">name</span>);
+    <span class="pl-en">List</span>&lt;<span class="pl-en">Student</span>&gt; <span class="pl-en">FindStudents</span>(<span class="pl-en">GroupName</span> <span class="pl-en">groupName</span>);
+    <span class="pl-en">List</span>&lt;<span class="pl-en">Student</span>&gt; <span class="pl-en">FindStudents</span>(<span class="pl-en">CourseNumber</span> <span class="pl-en">courseNumber</span>);
+
+    <span class="pl-en">Group</span> <span class="pl-en">FindGroup</span>(<span class="pl-en">GroupName</span> <span class="pl-en">groupName</span>);
+    <span class="pl-en">List</span>&lt;<span class="pl-en">Group</span>&gt; <span class="pl-en">FindGroups</span>(<span class="pl-en">CourseNumber</span> <span class="pl-en">courseNumber</span>);
+
+    <span class="pl-k">void</span> <span class="pl-en">ChangeStudentGroup</span>(<span class="pl-en">Student</span> <span class="pl-en">student</span>, <span class="pl-en">Group</span> <span class="pl-en">newGroup</span>);
+}</pre><div class="zeroclipboard-container position-absolute right-0 top-0">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn js-clipboard-copy m-2 p-0 tooltipped-no-delay" data-copy-feedback="Copied!" data-tooltip-direction="w" value="public interface IIsuService
+{
+    Group AddGroup(GroupName name);
+    Student AddStudent(Group group, string name);
+
+    Student GetStudent(int id);
+    Student FindStudent(string name);
+    List<Student> FindStudents(GroupName groupName);
+    List<Student> FindStudents(CourseNumber courseNumber);
+
+    Group FindGroup(GroupName groupName);
+    List<Group> FindGroups(CourseNumber courseNumber);
+
+    void ChangeStudentGroup(Student student, Group newGroup);
+}" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon m-2">
+    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2">
+    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto">И протестировать написанный код:</p>
+<div class="highlight highlight-source-cs notranslate position-relative overflow-auto" dir="auto"><pre>[<span class="pl-en">Test</span>]
+<span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">AddStudentToGroup_StudentHasGroupAndGroupContainsStudent</span>()
+{
+}
+
+[<span class="pl-en">Test</span>]
+<span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">ReachMaxStudentPerGroup_ThrowException</span>()
+{
+}
+
+[<span class="pl-en">Test</span>]
+<span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">CreateGroupWithInvalidName_ThrowException</span>()
+{
+}
+
+[<span class="pl-en">Test</span>]
+<span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">TransferStudentToAnotherGroup_GroupChanged</span>()
+{
+}</pre><div class="zeroclipboard-container position-absolute right-0 top-0">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn js-clipboard-copy m-2 p-0 tooltipped-no-delay" data-copy-feedback="Copied!" data-tooltip-direction="w" value="[Test]
+public void AddStudentToGroup_StudentHasGroupAndGroupContainsStudent()
+{
+}
+
+[Test]
+public void ReachMaxStudentPerGroup_ThrowException()
+{
+}
+
+[Test]
+public void CreateGroupWithInvalidName_ThrowException()
+{
+}
+
+[Test]
+public void TransferStudentToAnotherGroup_GroupChanged()
+{
+}" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon m-2">
+    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2">
+    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h2 dir="auto"><a id="user-content-лабораторная-1-shops" class="anchor" aria-hidden="true" href="#лабораторная-1-shops"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 1. Shops</h2>
+<p dir="auto"><strong>Цель:</strong> продемонстрировать умение выделять сущности и проектировать по ним классы.</p>
+<p dir="auto"><strong>Прикладная область</strong>: магазин, покупатель, доставка, пополнение и покупка товаров. Магазин имеет уникальный идентификатор, название (не обязательно уникальное) и адрес. В каждом магазине установлена своя цена на товар и есть в наличии некоторое количество единиц товара (какого-то товара может и не быть вовсе). Покупатель может производить покупку. Во время покупки - он передает нужную сумму денег магазину. Поставка товаров представляет собой набор товаров, их цен и количества, которые должны быть добавлены в магазин.</p>
+<p dir="auto">Тест кейсы:</p>
+<ol dir="auto">
+<li>Поставка товаров в магазин. Создаётся магазин, добавляются в систему товары, происходит поставка товаров в магазин. После добавления товары можно купить.</li>
+<li>Установка и изменение цен на какой-то товар в магазине.</li>
+<li>Поиск магазина, в котором партию товаров можно купить максимально дешево. Обработать ситуации, когда товара может быть недостаточно или товаров может небыть нигде.</li>
+<li>Покупка партии товаров в магазине (набор пар товар + количество). Нужно убедиться, что товаров хватает, что у пользователя достаточно денег. После покупки должны передаваться деньги, а количество товаров измениться.</li>
+</ol>
+<p dir="auto">NB:</p>
+<ul dir="auto">
+<li>Можно не поддерживать разные цены для одного магазина. Как вариант, можно брать старую цену, если магазин уже содержит этот товар. Иначе брать цену указанную в поставке.</li>
+<li>Пример ожидаемого формата тестов:</li>
+</ul>
+<div class="highlight highlight-source-cs notranslate position-relative overflow-auto" dir="auto"><pre><span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-en">moneyBefore</span> <span class="pl-k">=</span> <span class="pl-c1">100</span>;
+<span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-en">productPrice</span> <span class="pl-k">=</span> <span class="pl-c1">30</span>;
+<span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-en">productCount</span> <span class="pl-k">=</span> <span class="pl-c1">5</span>;
+<span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-en">productToBuyCount</span> <span class="pl-k">=</span> <span class="pl-c1">3</span>;
+
+<span class="pl-k">var</span> <span class="pl-en">person</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Person</span>(<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>, <span class="pl-smi">moneyBefore</span>);
+<span class="pl-k">var</span> <span class="pl-en">shopManager</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ShopManager</span>();
+<span class="pl-k">var</span> <span class="pl-en">shop</span> <span class="pl-k">=</span> <span class="pl-smi">shopManager</span>.<span class="pl-en">Create</span>(<span class="pl-s"><span class="pl-pds">"</span>shop name<span class="pl-pds">"</span></span>, ...);
+<span class="pl-k">var</span> <span class="pl-en">product</span> <span class="pl-k">=</span> <span class="pl-smi">shopManager</span>.<span class="pl-en">RegisterProduct</span>(<span class="pl-s"><span class="pl-pds">"</span>product name<span class="pl-pds">"</span></span>);
+
+<span class="pl-smi">shop</span>.<span class="pl-en">AddProducts</span>( ... );
+<span class="pl-smi">shop</span>.<span class="pl-en">Buy</span>(<span class="pl-smi">person</span>, ...);
+
+<span class="pl-smi">Assert</span>.<span class="pl-en">AreEquals</span>(<span class="pl-smi">moneyBefore</span> <span class="pl-k">-</span> <span class="pl-smi">productPrice</span>  <span class="pl-k">*</span> <span class="pl-smi">productToBuyCount</span>, <span class="pl-smi">person</span>.<span class="pl-smi">Money</span>);
+<span class="pl-smi">Assert</span>.<span class="pl-en">AreEquals</span>(<span class="pl-smi">productCount</span> <span class="pl-k">-</span> <span class="pl-smi">productToBuyCount</span> , <span class="pl-smi">shop</span>.<span class="pl-en">GetProductInfo</span>(<span class="pl-smi">product</span>).<span class="pl-smi">Count</span>);</pre><div class="zeroclipboard-container position-absolute right-0 top-0">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn js-clipboard-copy m-2 p-0 tooltipped-no-delay" data-copy-feedback="Copied!" data-tooltip-direction="w" value="const int moneyBefore = 100;
+const int productPrice = 30;
+const int productCount = 5;
+const int productToBuyCount = 3;
+
+var person = new Person(&quot;name&quot;, moneyBefore);
+var shopManager = new ShopManager();
+var shop = shopManager.Create(&quot;shop name&quot;, ...);
+var product = shopManager.RegisterProduct(&quot;product name&quot;);
+
+shop.AddProducts( ... );
+shop.Buy(person, ...);
+
+Assert.AreEquals(moneyBefore - productPrice  * productToBuyCount, person.Money);
+Assert.AreEquals(productCount - productToBuyCount , shop.GetProductInfo(product).Count);" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon m-2">
+    <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2">
+    <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h2 dir="auto"><a id="user-content-лабораторная-2-isu-3-огнп" class="anchor" aria-hidden="true" href="#лабораторная-2-isu-3-огнп"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 2. ISU &lt;3 ОГНП</h2>
+<p dir="auto"><strong>Цель:</strong>  научиться выделять зоны ответственности разных сущностей и проектировать связи между ними.</p>
+<p dir="auto"><strong>Предметнвая область:</strong> Реализация системы записи студентов на ОГНП.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b323c25764eea91bd73bd1e43b01fb148452b20aebb078234829bdda0126a5db/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f31353538653030662d663634612d343434302d613038302d6130363538316365316664622f556e7469746c65642e706e67"><img src="https://camo.githubusercontent.com/b323c25764eea91bd73bd1e43b01fb148452b20aebb078234829bdda0126a5db/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f31353538653030662d663634612d343434302d613038302d6130363538316365316664622f556e7469746c65642e706e67" alt="Untitled" data-canonical-src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1558e00f-f64a-4440-a080-a06581ce1fdb/Untitled.png" style="max-width: 100%;"></a></p>
+<p dir="auto">Курс ОГНП - дополнительные занятия, которые могут изучать студенты. Курс реализует определенный мегафакультет. Курс изучается в несколько потоков с ограниченным количеством мест. У каждого потока есть свое расписание - список пар, которые проводятся в течение недели. Пара - описание временного интервала в который группа занимается. Пара должна быть ассоциирована с группой, временем, преподавателем и аудиторией.</p>
+<p dir="auto">Студенты могут записываться на два разных курса ОГНП. Студент не может записаться на ОГНП, которое представляет мегафакультет его учебной группы. Учебная группы принадлежат определенному мегафакультету, который определятся из названия группы. Каждый учебная группа имеет список пар. При записи студента должна быть проверка на то, что пары его учебной группы не пересекаются с парами потока ОГНП.</p>
+<p dir="auto">Требуется реализовать функционал:</p>
+<ul dir="auto">
+<li>Добавление нового ОГНП</li>
+<li>Запись студента на опредленный ОГНП</li>
+<li>Возможность снять запись</li>
+<li>Получение списка групп по курсу</li>
+<li>Получение списка студентов в определенной группе ОГНП</li>
+<li>Получение списка не записавшихся на курсы студентов по группе</li>
+</ul>
+<h2 dir="auto"><a id="user-content-лабораторная-3-backups" class="anchor" aria-hidden="true" href="#лабораторная-3-backups"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 3. Backups</h2>
+<p dir="auto"><strong>Цель:</strong> применить на практике принципы из SOLID, GRASP.</p>
+<h3 dir="auto"><a id="user-content-предметная-область" class="anchor" aria-hidden="true" href="#предметная-область"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a><strong>Предметная</strong> область</h3>
+<p dir="auto"><strong>Бекап (Backup)</strong> — в общем случае, это резервная копия каких-то данных, которая делается для того, чтобы в дальнейшем можно было восстановить эти данные, то есть откатиться до того момента, когда она была создана. В контексте данной системы, бекапом обозначим связанную цепочку созданных точек.</p>
+<p dir="auto"><strong>Точка восстановления (Restore point)</strong> — резервная копия объектов, созданная в определенный момент. Представлена датой создания и список резервных копий объектов, которые бекапились.</p>
+<p dir="auto"><strong>Бекапная джоба (Backup job)</strong> - информация о конфигурации создаваемых бекапов (список файлов, которые нужно бекапить, способ хранения и прочее) и о уже созданных точках данного бекапа.</p>
+<p dir="auto"><strong>Объект джобы (Job object)</strong> - объекты, которые добавлены с бекапную джобу, для которых нужно создавать копии при процессинге джобы.</p>
+<p dir="auto"><strong>Сторадж (Storage)</strong> - файл, в котором хранится резервная копия объекта джобы, который был создан в конкретной точке.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7a4b2333cd2b3cbf194a746cd32acb7e77cd45e53de28f361c5c510c1c0be7aa/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f63343661633536312d313764322d343964332d626561392d3732343436663838623565632f556e7469746c65642e706e67"><img src="https://camo.githubusercontent.com/7a4b2333cd2b3cbf194a746cd32acb7e77cd45e53de28f361c5c510c1c0be7aa/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f63343661633536312d313764322d343964332d626561392d3732343436663838623565632f556e7469746c65642e706e67" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c46ac561-17d2-49d3-bea9-72446f88b5ec/Untitled.png" data-canonical-src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c46ac561-17d2-49d3-bea9-72446f88b5ec/Untitled.png" style="max-width: 100%;"></a></p>
+<h3 dir="auto"><a id="user-content-создание-резервных-копий" class="anchor" aria-hidden="true" href="#создание-резервных-копий"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Создание резервных копий</h3>
+<p dir="auto">Под созданием резервной копии файла подразумевается создание копии файла в другом месте. Система должна поддерживать расширяемость в алгоритмах создания резервных копий. Требуется реализовать два алгоритма:</p>
+<ol dir="auto">
+<li>Алгоритм раздельного хранения (Split storages) — для каждого объекта, который добавлен в джобу, создается копия - zip файл, в котором лежит объект.</li>
+<li>Алгоритм общего хранения (Single storage) —  все указанные в бекапе объекты сохраняются в один архив.</li>
+</ol>
+<h3 dir="auto"><a id="user-content-хранение-копий" class="anchor" aria-hidden="true" href="#хранение-копий"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Хранение копий</h3>
+<p dir="auto">В лабораторной работе подразуемвается, что резервные копии будут создаваться локально на файловой системе. Но логика выполнения должна абстрагироваться от этого, должна быть введена абстракция - репозиторий (см. принцип DIP из SOLID). И, например, в тестах стоит реализовать хранение в памяти, иначе тесты будут создавать много мусора, будут требовать дополнительной конфигурации, а также могут начать внезапно падать. Ожидаемая структура:</p>
+<ul dir="auto">
+<li>Корневая директория
+<ul dir="auto">
+<li>Директории джоб, которые лежат в корневой папке
+<ul dir="auto">
+<li>Файлы резервных копий, которые лежат в директории джобы</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 dir="auto"><a id="user-content-создание-рестор-поинтов" class="anchor" aria-hidden="true" href="#создание-рестор-поинтов"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Создание рестор поинтов</h3>
+<p dir="auto">За создание новой точки восстановления отвечает джоба. При создании джобы указывается ее название, способ хранения. Джоба может быть отредактирована за счет добавления или удаления. Результатом работы алгоритма является создание новой точки восстановления. Точка восстановления хранит о себе информацию о том, какие объекты были в ней забекаплены.</p>
+<h3 dir="auto"><a id="user-content-тест-кейсы" class="anchor" aria-hidden="true" href="#тест-кейсы"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Тест кейсы</h3>
+<ol dir="auto">
+<li>Тест-1
+<ol dir="auto">
+<li>Cоздаю бекапную джобу</li>
+<li>Указываю Split storages</li>
+<li>Добавляю в джобу два файла</li>
+<li>Запускаю создание точки</li>
+<li>Удаляю один из файлов</li>
+<li>Запускаю создание</li>
+<li>Проверяю, что создано две точки и три стораджа</li>
+</ol>
+</li>
+<li>Тест-2, который лучше оформлять не тестом т.к. посмотреть нормально можно только на настоящей файловой системе
+<ol dir="auto">
+<li>Cоздаю бекапную джобу, указываю путь директории для хранения бекапов</li>
+<li>Указываю Single storage</li>
+<li>Добавляю в джобу два файла</li>
+<li>Запускаю создание точки</li>
+<li>Проверяю, что созданы папки и файлы</li>
+</ol>
+</li>
+</ol>
+<h2 dir="auto"><a id="user-content-лабораторная-4-banks" class="anchor" aria-hidden="true" href="#лабораторная-4-banks"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 4. Banks</h2>
+<p dir="auto"><strong>Цель:</strong> применить на практике принципы из SOLID, GRASP, паттерны</p>
+<h3 dir="auto"><a id="user-content-предметная-область-1" class="anchor" aria-hidden="true" href="#предметная-область-1"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Предметная область</h3>
+<p dir="auto">Есть несколько <strong>Банков</strong>, которые предоставляют финансовые услуги по операциям с деньгами.</p>
+<p dir="auto">В банке есть <strong>Счета</strong> и <strong>Клиенты</strong>. У клиента есть имя, фамилия, адрес и номер паспорта (имя и фамилия обязательны, остальное – опционально).</p>
+<h3 dir="auto"><a id="user-content-счета-и-проценты" class="anchor" aria-hidden="true" href="#счета-и-проценты"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Счета и проценты</h3>
+<p dir="auto">Счета бывают трёх видов: <strong>Дебетовый счет</strong>, <strong>Депозит</strong> и <strong>Кредитный счет</strong>. Каждый счет принадлежит какому-то клиенту.</p>
+<p dir="auto"><strong>Дебетовый счет</strong> – обычный счет с фиксированным процентом на остаток. Деньги можно снимать в любой момент, в минус уходить нельзя. Комиссий нет.</p>
+<p dir="auto"><strong>Депозитный счет</strong> – счет, с которого нельзя снимать и переводить&nbsp;деньги до тех пор, пока не закончится его срок (пополнять можно). Процент на остаток зависит от изначальной суммы, <strong>например</strong>, если открываем депозит до 50 000 р. - 3%, если от 50 000 р.&nbsp;до 100 000 р.&nbsp;- 3.5%, больше 100 000 р.&nbsp;- 4%. Комиссий нет. Проценты должны задаваться для каджого банка свои.</p>
+<p dir="auto"><strong>Кредитный счет</strong> – имеет кредитный лимит, в рамках которого можно уходить в минус (в плюс тоже можно). Процента на остаток нет. Есть фиксированная комиссия за использование, если клиент в минусе.</p>
+<h3 dir="auto"><a id="user-content-комиссии" class="anchor" aria-hidden="true" href="#комиссии"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Комиссии</h3>
+<p dir="auto">Периодически банки проводят операции по выплате процентов и вычету комиссии. Это значит, что нужен механизм проматывания времени, чтобы посмотреть, что будет через день/месяц/год и т.п.</p>
+<p dir="auto">Процент на остаток начисляется ежедневно от текущей суммы в этот день, но выплачивается раз в месяц (и для дебетовой карты и для депозита). Например,&nbsp;3.65% годовых. Значит в день: 3.65% / 365 дней = 0.01%. У клиента сегодня 100 000 р.&nbsp;на счету - запомнили, что у него уже&nbsp;10 р.&nbsp;Завтра ему пришла ЗП и стало 200 000 р.&nbsp;За этот день ему добавили ещё 20 р. На следующий день он купил себе новый ПК и у него осталось 50 000 р.&nbsp;- добавили 5 р. Таким образом, к концу месяца&nbsp;складываем все, что запоминали. Допустим, вышло 300 р. -&nbsp;эта сумма добаляется к счету или депозиту в текущем месяце.</p>
+<p dir="auto">Разные банки предлагают разные условия. В каждом банке известны величины процентов и комиссий.</p>
+<h3 dir="auto"><a id="user-content-центральный-банк" class="anchor" aria-hidden="true" href="#центральный-банк"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Центральный банк</h3>
+<p dir="auto">Регистрацией всех банков, а также взаимодействием между банками занимается центральный банк. Он должен предоставлять все нужные другим банкам методы, методы добавления нового банка. Он также занимается уведомлением других банков о том, что нужно начислять остаток или комиссию - для этого механизма не требуется создавать таймеры и завязываться на реальное время.</p>
+<h3 dir="auto"><a id="user-content-операции-и-транзакции" class="anchor" aria-hidden="true" href="#операции-и-транзакции"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Операции и транзакции</h3>
+<p dir="auto">Каждый счет&nbsp;должен предоставлять&nbsp;механизм <strong>снятия</strong>, <strong>пополнения</strong>&nbsp;и <strong>перевода</strong> денег (то есть счетам нужны некоторые идентификаторы).</p>
+<p dir="auto">Еще обязательный механизм, который должны иметь банки - <strong>отмена транзакций</strong>. Если вдруг выяснится, что транзакция была совершена злоумышленником, то такая транзакция должна быть отменена. Отмена транзакции подразумевает возвращение суммы обратно. Транзакция не может быть повторно отменена.</p>
+<h3 dir="auto"><a id="user-content-создание-клиента-и-счета" class="anchor" aria-hidden="true" href="#создание-клиента-и-счета"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Создание клиента и счета</h3>
+<p dir="auto">Клиент должен создаваться по шагам. Сначала он указывает имя и фамилию (обязательно), затем адрес (можно пропустить и не указывать), затем паспортные данные (можно пропустить и не указывать).</p>
+<p dir="auto">Если при создании счета у клиента не указаны адрес или номер паспорта, мы объявляем такой счет (любого типа) сомнительным, и запрещаем операции снятия и перевода выше определенной суммы (у каждого банка своё значение). Если в дальнейшем клиент указывает всю необходимую информацию о себе - счет перестает быть&nbsp;сомнительным и может использоваться без ограничений.</p>
+<h3 dir="auto"><a id="user-content-обновление-условий-счетов" class="anchor" aria-hidden="true" href="#обновление-условий-счетов"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Обновление условий счетов</h3>
+<p dir="auto">Для банков требуется реализовать методы изменений процентов и лимитов не перевод. Также требуется реализовать возможность пользователям подписываться на информацию о таких изменениях - банк должен предоставлять интерфейс для подписывания. Например, когда происходит изменение лимита для кредитных карт - все пользователи, которые подписались и имеют кредитные карты, должны получить уведомление.</p>
+<h3 dir="auto"><a id="user-content-консольный-интерфейс-работы" class="anchor" aria-hidden="true" href="#консольный-интерфейс-работы"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Консольный интерфейс работы</h3>
+<p dir="auto">Для взаимодействия с банком требуется реализовать консольный интерфейс, который будет взаимодействовать с логикой приложения, отправлять и получать данные, отображать нужную информацию и предоставлять интерфейс для ввода информации пользователем.</p>
+<h2 dir="auto"><a id="user-content-лабораторная-5-backupsextra" class="anchor" aria-hidden="true" href="#лабораторная-5-backupsextra"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 5. BackupsExtra</h2>
+<h3 dir="auto"><a id="user-content-теормин" class="anchor" aria-hidden="true" href="#теормин"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Теормин</h3>
+<p dir="auto">Слиянияе точек восстановления (мердж) - процесс слияния двух точек в результате которого получается одна точк</p>
+<h3 dir="auto"><a id="user-content-сохранение-и-загрузка-данных" class="anchor" aria-hidden="true" href="#сохранение-и-загрузка-данных"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Сохранение и загрузка данных</h3>
+<p dir="auto">Система должна уметь загружать свое состояние после перезапуска программы. Это может быть реализовано за счет сохранения данных о настройках джоб в конфигурационный файл, который будет лежать в корневой директории. После загрузки ожидается, что в приложение загрузится информация о существующих джобах, добавленных в них объектах, информация о созданных точках восстановления.</p>
+<h3 dir="auto"><a id="user-content-алгоритмы-очистки-точек" class="anchor" aria-hidden="true" href="#алгоритмы-очистки-точек"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Алгоритмы очистки точек</h3>
+<p dir="auto">Помимо создания, нужно контролировать количество хранимых точек восстановления. Чтобы не допускать накопления большого количества старых и неактуальных точек, требуется реализовать механизмы их очистки — они должны контролировать, чтобы цепочка точек восстановления не выходила за допустимый лимит. В рамках лабораторной ожидается реализация таких типов лимитов:</p>
+<ol dir="auto">
+<li>По количеству точек - ограничивает длину цепочки точек восстановления (храним последние N точек и очищаем остальные)</li>
+<li>По количеству забекапленных объектов - ограничивает количество объектов в цепочках.</li>
+<li>По дате - ограничивает насколько старые точки будут хранится (очищаем все точки, которые были сделаны до указанной даты)</li>
+<li>Гибрид - возможность комбинировать лимиты. Пользователь может указывать, как комбинировать:
+<ul dir="auto">
+<li>нужно удалить точку, если она не подходит хотя бы под один установленный лимит</li>
+<li>нужно удалить точку, если она не подходит за все установленные лимиты</li>
+</ul>
+</li>
+</ol>
+<p dir="auto">Например, пользователь выбирает гибрид алгоритмов "по количеству" и "по дате". Если по одному из алгоритмов необходимо оставить 3 точки, а по другому — 5, то выбирается количество точек в соответствии с параметром, указанном при создании "гибрида" (использовать максимальное или минимальное значение отобранных точек).</p>
+<p dir="auto">Если для соответствия лимита требуется удалить все точки - должна бросаться ошибка.</p>
+<h3 dir="auto"><a id="user-content-мердж-точек" class="anchor" aria-hidden="true" href="#мердж-точек"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Мердж точек</h3>
+<p dir="auto">Стоит разделять алгоритм выбора точек для удаления и процесс удаления. Требуется поддержать альтернативное поведение при выходе за лимиты - мердж точек. Мердж работает по правилам:</p>
+<ul dir="auto">
+<li>Если в старой точке есть объект и в новой точке есть объект - нужно оставить новый, а старый можно удалять</li>
+<li>Если в старой точке есть объект, а в новоей его нет - нужно перенести его в новую точку</li>
+<li>Если в точке объекты храняться по правилу Single storage, то старая точка просто удаляется</li>
+</ul>
+<h3 dir="auto"><a id="user-content-логирование" class="anchor" aria-hidden="true" href="#логирование"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Логирование</h3>
+<p dir="auto">Логика работы бекпов не должна напрямую завязываться на консоль или другие внешние компоненты. Чтобы поддержать возможность уведомлять пользователя о событиях внутри алгоритма, требуется реализовать интерфейс для логирования и вызывать его в нужных моментах. Например, писать что создается сторадж или рестор поинт. Задаваться способ логирования должен из-вне. Например, при создании джобы. В рамках системы ожидаются такие реализации логера:</p>
+<ul dir="auto">
+<li>Пустой, который не выполняет никаких действий</li>
+<li>Консольный, который логирует информацию в консоль</li>
+<li>Файловый, который логирует в указанный файл</li>
+</ul>
+<p dir="auto">Для логирования сущностей стоит реализовать в самих сущностях методы, которые генерируют информативную строку, которая описывает сущность.</p>
+<p dir="auto">Для логера стоит поддержать возможность конфигурирации - указать нужно ли делать префикс с таймкодом в начале строки.</p>
+<h3 dir="auto"><a id="user-content-notes" class="anchor" aria-hidden="true" href="#notes"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Notes</h3>
+<ol dir="auto">
+<li>Для проверки работоспособности алгоритма работы со временем нужно спроектировать систему так, чтобы в тестах была возможность созданным объектам задавать время создания.</li>
+</ol>
+<h2 dir="auto"><a id="user-content-лабораторная-6-репорты" class="anchor" aria-hidden="true" href="#лабораторная-6-репорты"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Лабораторная 6. Репорты</h2>
+<p dir="auto"><strong>Цель:</strong> реализация многослойной архитектуры.</p>
+<h3 dir="auto"><a id="user-content-предметная-область-2" class="anchor" aria-hidden="true" href="#предметная-область-2"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Предметная область</h3>
+<p dir="auto">Требуется реализовать механизм автоматизации создания отчётов о проделанной командой работе за определённый период разработки (далее - спринт). В команде один из сотрудников - тимлид, он составляет итоговый отчёт о проделанной работе команды в конце каждого спринта.</p>
+<h4 dir="auto"><a id="user-content-ход-событий" class="anchor" aria-hidden="true" href="#ход-событий"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Ход событий:</h4>
+<ol dir="auto">
+<li>Сотрудник может добавлять новые задачи, вносить изменения в существующие, выполнять их.</li>
+<li>Сотрудник должен писать отчёт о проделанной работе за каждый спринт. Чтобы это сделать он использует список всех изменений, произведённых с момента создания предыдущего отчёта. В течение спринта сотрудник делает отчёт, прикрепляя к нему выполненные за этот период задачи.</li>
+<li>Тимлид в конце спринта пишет отчёт за всю команду, просматривая список выполненных задач и отчётов.</li>
+</ol>
+<h3 dir="auto"><a id="user-content-сущности" class="anchor" aria-hidden="true" href="#сущности"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Сущности</h3>
+<ul dir="auto">
+<li>Сотрудник. У сотрудника может быть руководитель и могут быть подчиненные.</li>
+<li>Задача</li>
+<li>Отчёт</li>
+</ul>
+<p dir="auto">В реализованной системе должна быть возможность добавлять новых сотрудников, изменять руководителя сотрудника и получать иерархию всех сотрудников.</p>
+<p dir="auto">Иерархия сотрудников представляется следующим образом: тимлид - сотрудник, руководитель - корень дерева, которому подчиняются другие сотрудники, которые могут иметь или не иметь подчинённых.</p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4c6e99611370d966ef044504481dadc56b050c579b94291084a020c45d37ec0a/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f62363238396665342d303232332d346161372d383939302d6635346332356338633534342f556e7469746c65642e706e67"><img src="https://camo.githubusercontent.com/4c6e99611370d966ef044504481dadc56b050c579b94291084a020c45d37ec0a/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f7365637572652e6e6f74696f6e2d7374617469632e636f6d2f62363238396665342d303232332d346161372d383939302d6635346332356338633534342f556e7469746c65642e706e67" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b6289fe4-0223-4aa7-8990-f54c25c8c544/Untitled.png" data-canonical-src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b6289fe4-0223-4aa7-8990-f54c25c8c544/Untitled.png" style="max-width: 100%;"></a></p>
+<h4 dir="auto"><a id="user-content-задача" class="anchor" aria-hidden="true" href="#задача"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Задача</h4>
+<p dir="auto">Задача может находиться в одном из трёх состояний:</p>
+<ol dir="auto">
+<li>Open - задача создана, но к её выполнению ещё не приступили.</li>
+<li>Active - задача находится в процессе выполнения.</li>
+<li>Resolved - задача выполнена.</li>
+</ol>
+<p dir="auto">Сотрудник должен иметь возможность добавить комментарий к задаче. Все изменения (состояние/назначенный сотрудник/комментарий) должны фиксироваться во времени. При этом в системе должна быть возможность просмотреть, когда было сделано определённое изменение.</p>
+<p dir="auto"><strong>Система управления задачами</strong> должна поддерживать следующий функционал:</p>
+<ul dir="auto">
+<li>поиск задач по ID</li>
+<li>поиск задач по времени создания/последнего изменения</li>
+<li>поиск задач, закреплённых за определённым пользователем (сотрудником команды)</li>
+<li>поиск задач, в которые пользователь вносил изменения</li>
+<li>создание задачи, изменение её состояния, добавления к ней комментария, изменение назначенного за ней сотрудника</li>
+<li>получение списка задач, которые назначены подчинённым определённого сотрудника</li>
+</ul>
+<h4 dir="auto"><a id="user-content-отчёт" class="anchor" aria-hidden="true" href="#отчёт"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Отчёт</h4>
+<p dir="auto">Необходимо реализовать возможность написания отчётов за весь спринт. В системе на каждый спринт создается драфт отчёта (то есть черновик, начальный проект отчёта за спринт, который в дальнейшем будет корректироваться), который заполняет каждый сотрудник. Для написания отчёта пользователю системы должна предоставляться возможность получить список всех своих задач за спринт, а также список отчётов своих подчиненных за спринт.</p>
+<p dir="auto">После окончания написания отчёта за спринт сотрудник должен сохранить его в системе. После этого отчёт считается завершённым, доступ на его редактирование закрывается. Тимлид должен иметь возможность видеть статус отчёта. Если отчёт завершённый, то он агрегирует в командный отчёт за спринт.</p>
+<h3 dir="auto"><a id="user-content-интерфейс-работы-с-пользователем" class="anchor" aria-hidden="true" href="#интерфейс-работы-с-пользователем"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Интерфейс работы с пользователем</h3>
+<p dir="auto">Слой представления должен быть реализовать в ввиде консольного клиента, все взаимодействие происходит через консоль. Требуется реализовать такой набор функционала:</p>
+<ul dir="auto">
+<li>Сотрудники
+<ul dir="auto">
+<li>GetAll (с пагинацией)</li>
+<li>GetById</li>
+<li>Update</li>
+<li>Delete</li>
+<li>Create</li>
+</ul>
+</li>
+<li>Авторизация - выставление, что работа происходит от имени определенного сотрудника</li>
+<li>Задачи
+<ul dir="auto">
+<li>GetAll</li>
+<li>поиск задач по ID</li>
+<li>поиск задач по времени создания/последнего изменения</li>
+<li>поиск задач, закреплённых за определённым пользователем (сотрудником команды)</li>
+<li>поиск задач, в которые пользователь вносил изменения</li>
+<li>создание задачи, изменение её состояния, добавления к ней комментария, изменение назначенного за ней сотрудника</li>
+<li>получение списка задач, которые назначены подчинённым определённого сотрудника</li>
+<li>Добавление задачи, обновление описания задачи</li>
+<li>Изменение человека, который заасайнен</li>
+</ul>
+</li>
+<li>Недельный отчет (викли)
+<ul dir="auto">
+<li>Создать викли отчет</li>
+<li>Получить список задач за эту неделю</li>
+<li>Получить список дейли отчетов подчиненных (для тех, кто написал. Отдельно список тех, кто еще не написал)</li>
+<li>Добавление задачи в отчет</li>
+<li>Обновление описания и состояния отчета</li>
+</ul>
+</li>
+</ul>
+<h3 dir="auto"><a id="user-content-детали-реализации" class="anchor" aria-hidden="true" href="#детали-реализации"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Детали реализации</h3>
+<p dir="auto">В рамках лабораторной предполагается реализация многослойной архитектуры. В качестве UI слоя требуется реализация интерфейса для пользователя (консольного или иного на усмотрение пользователя). В качестве слоя данных требуется добавить хранение данных (рекомендуется использовать ORM).a</p>
+</article>
+          </div>
+</body>
+</html>
